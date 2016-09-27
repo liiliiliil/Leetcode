@@ -7,3 +7,13 @@ public:
         else return false;
     }
 };
+
+
+//0ms, but better!!!
+
+class Solution {
+public:
+    bool canWinNim(int n) {
+        return n%4;
+    }
+};
