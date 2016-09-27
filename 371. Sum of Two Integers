@@ -3,6 +3,21 @@
 class Solution {
 public:
     int getSum(int a, int b) {
-        return a += b;
+        if (b==0) return b;
+        
+        int sum = a^b;
+        int carry = (a&b)<<1;
+        if (carry != 0) return getSum(sum, carry);
+        
+        return sum;
     }
 };
+
+
+
+考的是位运算；
+步骤：（以下是粘来的，来自http://blog.csdn.net/mebiuw/article/details/51788817）
+1、输入 a，b 
+2、按照位把ab相加，不考虑进位，结果是 a xor b，即1+1 =0 0+0 = 0 1+0=1，进位的请看下面 
+3、计算ab的进位的话，只有二者同为1才进位，因此进位可以标示为 (a and b) << 1 ，注意因为是进位，所以需要向左移动1位 
+4、于是a+b可以看成 （a xor b）+ （(a and b) << 1），这时候如果 (a and b) << 1 不为0，就递归调用这个方式吧，因为（a xor b）+ （(a and b) << 1） 也有可能进位，所以我们需要不断的处理进位。
