@@ -1,0 +1,21 @@
+//3 ms, 6 ms, 3 ms, 3 ms
+
+class Solution {
+public:
+    int addDigits(int num) {
+        if (!num) return num;
+        if (!(num%9)) return 9;
+        return num%9;
+    }
+};
+
+
+
+//6 ms, 6 ms, 3 ms, 3 ms, 9 ms, what???
+
+class Solution {
+public:
+    int addDigits(int num) {
+        return (num - 1) % 9 + 1;
+    }
+};
