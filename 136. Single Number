@@ -1,0 +1,13 @@
+//16 ms
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        for (int i = 1; i < nums.size(); i++) nums[0] ^= nums[i];
+        return nums[0];
+    }
+};
+
+
+
+一个主要的思想是俩相同的数进行异或运算，归零
