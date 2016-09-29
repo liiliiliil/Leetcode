@@ -1,0 +1,36 @@
+//183 ms, 179 ms, orz
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int zeroNum = 0;
+        for (int i = 0; i < n - zeroNum; i++)
+        {
+            if (nums[i] == 0)
+            {
+                reverse(nums.begin()+i+1,nums.end());
+                reverse(nums.begin()+i,nums.end());
+                i--;
+                zeroNum++;
+            }
+        }
+    }
+};
+
+
+
+// 16 ms，好赞呀
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int j = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i]) nums[j++] = nums[i];
+        }
+        for (; j < n; j++) nums[j] = 0;
+    }
+};
