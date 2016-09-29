@@ -1,0 +1,98 @@
+// 3 ms
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int sumOfLeftLeaves(TreeNode* root) {
+        if (!root) return 0;
+        if (!(root->left || root->right) && left) return root->val;
+        int sum = 0;
+        left = 1; sum += sumOfLeftLeaves(root->left);
+        left = 0; sum += sumOfLeftLeaves(root->right);
+        return sum;
+    }
+private:
+    int left = 0; // left is 1, right is 0;
+};
+
+
+// 3 ms, 别人的
+
+class Solution {
+public:
+    int sumOfLeftLeaves(TreeNode* root) {
+        if (!root) return 0;
+        if (root->left && !root->left->left && !root->left->right)
+            return root->left->val + sumOfLeftLeaves(root->right);
+        return sumOfLeftLeaves(root->left) + sumOfLeftLeaves(root->right);
+    }
+};
+
+
+
+
+// 这个是不正确的解法，错误在于：当左孩子没有左右孙子，左孩子称为左叶节点。所以说，不到最后一个不是叶子，是树杈……没学过数据结构真是orz
+// 还有当二叉树为[1]时，应返回0，没有左叶节点
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int sumOfLeftLeaves(TreeNode* root) {
+        if (!root) return 0;
+        int sum = 0;
+        if (left)
+        {
+            if (!(root->left || root->right))
+            {
+                return root->val;
+            }
+            if (root->left)
+            {
+                left = 1;
+                sum +=  sumOfLeftLeaves(root->left);
+            }
+            if (root->right)
+            {
+                left = 0;
+                sum +=  sumOfLeftLeaves(root->right);
+            }
+            return root->val + sum;
+        }
+        else
+        {
+            if (!(root->left || root->right))
+            {
+                return 0;
+            }
+            if (root->left)
+            {
+                left = 1;
+                sum +=  sumOfLeftLeaves(root->left);
+            }
+            if (root->right)
+            {
+                left = 0;
+                sum +=  sumOfLeftLeaves(root->right);
+            }
+            return sum;
+        }
+    }
+private:
+    int left = 0; // left is 1, right is 0
+};
