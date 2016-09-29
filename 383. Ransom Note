@@ -1,0 +1,26 @@
+//33 ms, 23 ms (yoho!), 33 ms, 29 ms, 26 ms
+
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        int n = ransomNote.size();
+        if (n > magazine.size()) return false;
+        int j = magazine.find(ransomNote[0]), check = 0;
+        for (int i = 1; i < n; i++)
+        {
+            if (j != string::npos)
+            {
+                magazine.erase(magazine.begin()+j);
+                check++;
+            }
+            j = magazine.find(ransomNote[i]);
+        }
+        if (j != string::npos)
+        {
+            magazine.erase(magazine.begin()+j);
+            check++;
+        }
+        if (check == n) return true;
+        else return false;
+    }
+};
