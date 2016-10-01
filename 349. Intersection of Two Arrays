@@ -1,6 +1,6 @@
 // It can't AC, and I can't find bugs...
 
-```
+
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
@@ -32,11 +32,11 @@ public:
         return intersection;
     }
 };
-```
+
 
 
 // 16 ms
-```
+
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
@@ -49,4 +49,4 @@ public:
         return ans;
 }
 };
-```
+
