@@ -1,0 +1,52 @@
+// It can't AC, and I can't find bugs...
+
+```
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        if (!(nums1.size())) return nums1;
+        if (!(nums2.size())) return nums2;
+        int nums1_max = *max_element(nums1.begin(),nums1.end());
+        int nums2_max = *max_element(nums2.begin(),nums2.end());
+        int n1 = nums1.size(), n2 = nums2.size();
+        int standard = (n1 > n2 ? n1 : n2) + 1;
+        int table_size = nums1_max > nums2_max ? nums1_max : nums2_max;
+        int* table = new int[table_size]();
+        
+        for (int i = 0; i < n1; i++)
+        {
+            if (table[nums1[i]]) table[nums1[i]]++;
+            else table[nums1[i]] = standard + 1;
+        }
+        for (int i = 0; i < n2; i++)
+        {
+            table[nums2[i]]--;
+        }
+        
+        vector<int> intersection;
+        for (int i = 0; i < table_size; i++)
+        {
+            if (table[i] == standard) intersection.push_back(i);
+        }
+        
+        return intersection;
+    }
+};
+```
+
+
+// 16 ms
+```
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        set<int> s_nums1(nums1.begin(),nums1.end());
+        set<int> s_nums2(nums2.begin(),nums2.end());
+        vector<int> ans;
+        set_intersection(s_nums1.begin(),s_nums1.end(),
+                        s_nums2.begin(),s_nums2.end(),
+                        back_inserter(ans));
+        return ans;
+}
+};
+```
