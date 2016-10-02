@@ -1,0 +1,46 @@
+// 49 ms, it beats 63.25%, 62 ms, 46 ms, 这个为嘛比下面那个快呢？！
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        int table[58] = {0};
+        int standard = s.size()+1;
+        char unique = 0;
+        bool find = 0;
+        for (char c: s)
+        {
+            if (!table[c-'A']) table[c-'A'] = standard;
+            else table[c-'A']++;
+        }
+        for (char c: s)
+        {
+            if (table[c-'A'] == standard)
+            {
+                unique = c;
+                find = true;
+                break;
+            }
+        }
+        if (find) return s.find(unique);
+        else return -1;
+    }
+};
+
+
+
+// 49+ ms, WHY??? ， best one is 46 ms
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        int table[58] = {0};
+        int index = 0;
+        for (char c : s) table[c-'A']++;
+        for (char c : s)
+        {
+            if (table[c-'A'] == 1) return index;
+            index++;
+        }
+        return -1;
+    }
+};
