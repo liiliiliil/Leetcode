@@ -1,0 +1,40 @@
+// 6 ms, 3 ms, 3 ms, 3 ms
+// my solution
+
+class Solution {
+public:
+    int titleToNumber(string s) {
+        int digit = s.size();
+        int column = 0;
+        for (int i = 0; i < digit; i++) column += (s[i]-64)*pow(26,digit-1-i);
+        return column;
+    }
+};
+
+
+
+// 6 ms, 9 ms
+
+int titleToNumber(string s) {
+    int ret = 0;
+    for(int i = 0;i<s.size();i++)  ret = ret*26 + (s[i]-64);
+    return ret;
+}
+
+
+
+// 6 ms, 6 ms, 3 ms, 3 ms
+
+class Solution {
+public:
+    int titleToNumber(string s) {
+        int result = 0;
+        int pow = 26;
+        for(char c : s)  // c++11的新特性，foreach循环，每次从冒号后面的“数组”中拿一个给前面的变量
+        {
+            result = result*pow + c - 'A' + 1;
+        }
+        
+        return result;
+    }
+};
