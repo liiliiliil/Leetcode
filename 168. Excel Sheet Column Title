@@ -1,0 +1,41 @@
+// 0 ms
+
+class Solution {
+public:
+    string convertToTitle(int n) {
+        string title;
+        while (n > 26)
+        {
+            if (n%26) title.insert(title.begin(),char(n%26+64));
+            else
+            {
+                title.insert(title.begin(),'Z');
+                n -= 26;
+            }
+            n /= 26;
+        }
+        title.insert(title.begin(),char(n+64));
+        return title;
+    }
+};
+
+
+
+// 0 ms, I think this algorithm is better than mine.
+
+class Solution {
+public:
+    string convertToTitle(int n) {
+        string str ;
+        char temp;
+        int num;
+        while(n)
+        {
+            num = (n-1)%26;
+            temp = num+'A';
+            str = temp + str;
+            n = (n-1)/26;
+        }
+        return str;
+    }
+};
