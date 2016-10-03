@@ -1,0 +1,31 @@
+// 33 ms, 36 ms, 36 ms
+
+class Solution {
+public:
+	int majorityElement(vector<int>& nums) {
+		int size = nums.size();
+		int half_size = size / 2;
+		sort(nums.begin(), nums.end());
+		int most_num = nums[0];
+		int most = 1;
+		int count = 1;
+		for (int i = 1; i < size; i++)
+		{
+			if (nums[i - 1] == nums[i]) count++;
+			else if (count > most)
+			{
+				most = count;
+				most_num = nums[i - 1];
+				count = 1;
+			}
+			else count = 1;
+		}
+		if (count > most)
+		{
+			most = count;
+			most_num = nums[size - 1];
+		}
+		if (most > half_size) return most_num;
+		else return 0;
+	}
+};
